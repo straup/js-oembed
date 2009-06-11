@@ -1,0 +1,20 @@
+There are other Javascript oEmbed libraries. This is mine.
+
+# EXAMPLE:
+
+   var oembed_args = {
+		'service' : 'http://www.flickr.com/services/oembed/',
+		'enable_logging' : logging,
+   };
+
+   var oembed = new info.aaronland.oEmbed(oembed_args);
+
+   oembed.fetch('http://www.flickr.com/photos/straup/3615860488', {'maxwidth': 240}, function(rsp){ 
+   	alert(rsp.url);
+   });
+
+# SEE ALSO:
+
+http://oembed.com/
+
+http://code.google.com/p/jquery-oembed/
