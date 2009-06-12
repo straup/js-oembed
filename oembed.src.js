@@ -19,10 +19,15 @@ info.aaronland.oEmbed.prototype.fetch = function(url, oembed_args, doThisOnSucce
 
     // who what where
 
+    var cb_func = '_oEmbedCallback' + hex_md5(url);
+    this.log("register callback '" + cb_func + "' for " + url);
+
+    //
+
     var req = this.args['service'];
     req += '?url=' + encodeURIComponent(url);
     req += '&format=json';
-    req += '&jsoncallback=_jsonCallback';
+    req += '&jsoncallback=' + cb_func;
 
     if (oembed_args){
         for (key in oembed_args){
@@ -36,7 +41,7 @@ info.aaronland.oEmbed.prototype.fetch = function(url, oembed_args, doThisOnSucce
 
     var _self = this;
 
-    _jsonCallback = function(rsp){
+    window[ cb_func ] = function(rsp){
         _self.log("dispatch returned for " + req);
 
         if (doThisOnSuccess){
